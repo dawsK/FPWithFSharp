@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>FsReveal</title>
-    <meta name="description" content="Introduction to FsReveal">
-    <meta name="author" content="Karlkim Suwanmongkol">
+    <title>Functional Programming with F#</title>
+    <meta name="description" content="Intro to Functional Programming with F#">
+    <meta name="author" content="Dawson">
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -14,7 +14,7 @@
     <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/reveal.css">
-    <link rel="stylesheet" href="css/theme/night.css" id="theme">
+    <link rel="stylesheet" href="css/theme/black.css" id="theme">
     <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/style.css" />
     <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/deedle.css" />
     <link type="text/css" rel="stylesheet" href="css/custom.css" />
@@ -46,24 +46,78 @@
 </head>
 <body>
     <div class="reveal">
-        <div class="tip" id="fs1">val a : int<br /><br />Full name: index.a</div>
-<div class="tip" id="fs2">val factorial : x:int -&gt; int<br /><br />Full name: index.factorial</div>
-<div class="tip" id="fs3">val x : int</div>
-<div class="tip" id="fs4">Multiple items<br />module List<br /><br />from Microsoft.FSharp.Collections<br /><br />--------------------<br />type List&lt;&#39;T&gt; =<br />&#160;&#160;| ( [] )<br />&#160;&#160;| ( :: ) of Head: &#39;T * Tail: &#39;T list<br />&#160;&#160;interface IEnumerable<br />&#160;&#160;interface IEnumerable&lt;&#39;T&gt;<br />&#160;&#160;member Head : &#39;T<br />&#160;&#160;member IsEmpty : bool<br />&#160;&#160;member Item : index:int -&gt; &#39;T with get<br />&#160;&#160;member Length : int<br />&#160;&#160;member Tail : &#39;T list<br />&#160;&#160;static member Cons : head:&#39;T * tail:&#39;T list -&gt; &#39;T list<br />&#160;&#160;static member Empty : &#39;T list<br /><br />Full name: Microsoft.FSharp.Collections.List&lt;_&gt;</div>
-<div class="tip" id="fs5">val reduce : reduction:(&#39;T -&gt; &#39;T -&gt; &#39;T) -&gt; list:&#39;T list -&gt; &#39;T<br /><br />Full name: Microsoft.FSharp.Collections.List.reduce</div>
-<div class="tip" id="fs6">val c : int<br /><br />Full name: index.c</div>
+        <div class="tip" id="fs1">val name : string<br /><br />Full name: index.name</div>
+<div class="tip" id="fs2">val age : int<br /><br />Full name: index.age</div>
+<div class="tip" id="fs3">val kidsAges : int list<br /><br />Full name: index.kidsAges</div>
+<div class="tip" id="fs4">val kidsAgesInJuly : int list<br /><br />Full name: index.kidsAgesInJuly</div>
+<div class="tip" id="fs5">val years : seq&lt;int&gt;<br /><br />Full name: index.years</div>
+<div class="tip" id="fs6">Multiple items<br />val seq : sequence:seq&lt;&#39;T&gt; -&gt; seq&lt;&#39;T&gt;<br /><br />Full name: Microsoft.FSharp.Core.Operators.seq<br /><br />--------------------<br />type seq&lt;&#39;T&gt; = System.Collections.Generic.IEnumerable&lt;&#39;T&gt;<br /><br />Full name: Microsoft.FSharp.Collections.seq&lt;_&gt;</div>
+<div class="tip" id="fs7">val fullname : first:string -&gt; last:string -&gt; string<br /><br />Full name: index.fullname</div>
+<div class="tip" id="fs8">val first : string</div>
+<div class="tip" id="fs9">val last : string</div>
+<div class="tip" id="fs10">val sprintf : format:Printf.StringFormat&lt;&#39;T&gt; -&gt; &#39;T<br /><br />Full name: Microsoft.FSharp.Core.ExtraTopLevelOperators.sprintf</div>
+<div class="tip" id="fs11">val evens : values:seq&lt;int&gt; -&gt; seq&lt;int&gt;<br /><br />Full name: index.evens</div>
+<div class="tip" id="fs12">val values : seq&lt;int&gt;</div>
+<div class="tip" id="fs13">val isEven : (int -&gt; bool)</div>
+<div class="tip" id="fs14">val x : int</div>
+<div class="tip" id="fs15">module Seq<br /><br />from Microsoft.FSharp.Collections</div>
+<div class="tip" id="fs16">val filter : predicate:(&#39;T -&gt; bool) -&gt; source:seq&lt;&#39;T&gt; -&gt; seq&lt;&#39;T&gt;<br /><br />Full name: Microsoft.FSharp.Collections.Seq.filter</div>
+<div class="tip" id="fs17">val sumOfEvens : values:seq&lt;int&gt; -&gt; int<br /><br />Full name: index.sumOfEvens</div>
+<div class="tip" id="fs18">val sum : source:seq&lt;&#39;T&gt; -&gt; &#39;T (requires member ( + ) and member get_Zero)<br /><br />Full name: Microsoft.FSharp.Collections.Seq.sum</div>
+<div class="tip" id="fs19">val sumOfEvensWithoutPiping : values:seq&lt;int&gt; -&gt; int<br /><br />Full name: index.sumOfEvensWithoutPiping</div>
+<div class="tip" id="fs20">val coord : int * int<br /><br />Full name: index.coord</div>
+<div class="tip" id="fs21">val threeTuple : string * int * bool<br /><br />Full name: index.threeTuple</div>
+<div class="tip" id="fs22">type Person =<br />&#160;&#160;{Name: string;<br />&#160;&#160;&#160;Age: int;}<br /><br />Full name: index.Person</div>
+<div class="tip" id="fs23">Person.Name: string</div>
+<div class="tip" id="fs24">Multiple items<br />val string : value:&#39;T -&gt; string<br /><br />Full name: Microsoft.FSharp.Core.Operators.string<br /><br />--------------------<br />type string = System.String<br /><br />Full name: Microsoft.FSharp.Core.string</div>
+<div class="tip" id="fs25">Person.Age: int</div>
+<div class="tip" id="fs26">Multiple items<br />val int : value:&#39;T -&gt; int (requires member op_Explicit)<br /><br />Full name: Microsoft.FSharp.Core.Operators.int<br /><br />--------------------<br />type int = int32<br /><br />Full name: Microsoft.FSharp.Core.int<br /><br />--------------------<br />type int&lt;&#39;Measure&gt; = int<br /><br />Full name: Microsoft.FSharp.Core.int&lt;_&gt;</div>
+<div class="tip" id="fs27">val emma : Person<br /><br />Full name: index.emma</div>
+<div class="tip" id="fs28">type FamilyMember =<br />&#160;&#160;| Child of Person<br />&#160;&#160;| Parent of Person<br /><br />Full name: index.FamilyMember</div>
+<div class="tip" id="fs29">union case FamilyMember.Child: Person -&gt; FamilyMember</div>
+<div class="tip" id="fs30">union case FamilyMember.Parent: Person -&gt; FamilyMember</div>
+<div class="tip" id="fs31">Multiple items<br />module List<br /><br />from Microsoft.FSharp.Collections<br /><br />--------------------<br />type List&lt;&#39;T&gt; =<br />&#160;&#160;| ( [] )<br />&#160;&#160;| ( :: ) of Head: &#39;T * Tail: &#39;T list<br />&#160;&#160;interface IEnumerable<br />&#160;&#160;interface IEnumerable&lt;&#39;T&gt;<br />&#160;&#160;member Head : &#39;T<br />&#160;&#160;member IsEmpty : bool<br />&#160;&#160;member Item : index:int -&gt; &#39;T with get<br />&#160;&#160;member Length : int<br />&#160;&#160;member Tail : &#39;T list<br />&#160;&#160;static member Cons : head:&#39;T * tail:&#39;T list -&gt; &#39;T list<br />&#160;&#160;static member Empty : &#39;T list<br /><br />Full name: Microsoft.FSharp.Collections.List&lt;_&gt;</div>
+<div class="tip" id="fs32">val sum : list:&#39;T list -&gt; &#39;T (requires member ( + ) and member get_Zero)<br /><br />Full name: Microsoft.FSharp.Collections.List.sum</div>
+<div class="tip" id="fs33">val printfn : format:Printf.TextWriterFormat&lt;&#39;T&gt; -&gt; &#39;T<br /><br />Full name: Microsoft.FSharp.Core.ExtraTopLevelOperators.printfn</div>
+<div class="tip" id="fs34">val square : x:int -&gt; int<br /><br />Full name: index.square</div>
+<div class="tip" id="fs35">val sq : int<br /><br />Full name: index.sq</div>
+<div class="tip" id="fs36">type Employee =<br />&#160;&#160;| Worker of Person<br />&#160;&#160;| Manager of Employee list<br /><br />Full name: index.Employee</div>
+<div class="tip" id="fs37">union case Employee.Worker: Person -&gt; Employee</div>
+<div class="tip" id="fs38">union case Employee.Manager: Employee list -&gt; Employee</div>
+<div class="tip" id="fs39">type &#39;T list = List&lt;&#39;T&gt;<br /><br />Full name: Microsoft.FSharp.Collections.list&lt;_&gt;</div>
+<div class="tip" id="fs40">val jdoe : Person<br /><br />Full name: index.jdoe</div>
+<div class="tip" id="fs41">val worker : Employee<br /><br />Full name: index.worker</div>
+<div class="tip" id="fs42">val doSomething : x:int -&gt; unit<br /><br />Full name: index.doSomething</div>
+<div class="tip" id="fs43">val task : Async&lt;unit&gt;<br /><br />Full name: index.task</div>
+<div class="tip" id="fs44">val async : AsyncBuilder<br /><br />Full name: Microsoft.FSharp.Core.ExtraTopLevelOperators.async</div>
+<div class="tip" id="fs45">val tasks : Async&lt;unit []&gt;<br /><br />Full name: index.tasks</div>
+<div class="tip" id="fs46">val i : int</div>
+<div class="tip" id="fs47">Multiple items<br />type Async<br />static member AsBeginEnd : computation:(&#39;Arg -&gt; Async&lt;&#39;T&gt;) -&gt; (&#39;Arg * AsyncCallback * obj -&gt; IAsyncResult) * (IAsyncResult -&gt; &#39;T) * (IAsyncResult -&gt; unit)<br />static member AwaitEvent : event:IEvent&lt;&#39;Del,&#39;T&gt; * ?cancelAction:(unit -&gt; unit) -&gt; Async&lt;&#39;T&gt; (requires delegate and &#39;Del :&gt; Delegate)<br />static member AwaitIAsyncResult : iar:IAsyncResult * ?millisecondsTimeout:int -&gt; Async&lt;bool&gt;<br />static member AwaitTask : task:Task&lt;&#39;T&gt; -&gt; Async&lt;&#39;T&gt;<br />static member AwaitWaitHandle : waitHandle:WaitHandle * ?millisecondsTimeout:int -&gt; Async&lt;bool&gt;<br />static member CancelDefaultToken : unit -&gt; unit<br />static member Catch : computation:Async&lt;&#39;T&gt; -&gt; Async&lt;Choice&lt;&#39;T,exn&gt;&gt;<br />static member FromBeginEnd : beginAction:(AsyncCallback * obj -&gt; IAsyncResult) * endAction:(IAsyncResult -&gt; &#39;T) * ?cancelAction:(unit -&gt; unit) -&gt; Async&lt;&#39;T&gt;<br />static member FromBeginEnd : arg:&#39;Arg1 * beginAction:(&#39;Arg1 * AsyncCallback * obj -&gt; IAsyncResult) * endAction:(IAsyncResult -&gt; &#39;T) * ?cancelAction:(unit -&gt; unit) -&gt; Async&lt;&#39;T&gt;<br />static member FromBeginEnd : arg1:&#39;Arg1 * arg2:&#39;Arg2 * beginAction:(&#39;Arg1 * &#39;Arg2 * AsyncCallback * obj -&gt; IAsyncResult) * endAction:(IAsyncResult -&gt; &#39;T) * ?cancelAction:(unit -&gt; unit) -&gt; Async&lt;&#39;T&gt;<br />static member FromBeginEnd : arg1:&#39;Arg1 * arg2:&#39;Arg2 * arg3:&#39;Arg3 * beginAction:(&#39;Arg1 * &#39;Arg2 * &#39;Arg3 * AsyncCallback * obj -&gt; IAsyncResult) * endAction:(IAsyncResult -&gt; &#39;T) * ?cancelAction:(unit -&gt; unit) -&gt; Async&lt;&#39;T&gt;<br />static member FromContinuations : callback:((&#39;T -&gt; unit) * (exn -&gt; unit) * (OperationCanceledException -&gt; unit) -&gt; unit) -&gt; Async&lt;&#39;T&gt;<br />static member Ignore : computation:Async&lt;&#39;T&gt; -&gt; Async&lt;unit&gt;<br />static member OnCancel : interruption:(unit -&gt; unit) -&gt; Async&lt;IDisposable&gt;<br />static member Parallel : computations:seq&lt;Async&lt;&#39;T&gt;&gt; -&gt; Async&lt;&#39;T []&gt;<br />static member RunSynchronously : computation:Async&lt;&#39;T&gt; * ?timeout:int * ?cancellationToken:CancellationToken -&gt; &#39;T<br />static member Sleep : millisecondsDueTime:int -&gt; Async&lt;unit&gt;<br />static member Start : computation:Async&lt;unit&gt; * ?cancellationToken:CancellationToken -&gt; unit<br />static member StartAsTask : computation:Async&lt;&#39;T&gt; * ?taskCreationOptions:TaskCreationOptions * ?cancellationToken:CancellationToken -&gt; Task&lt;&#39;T&gt;<br />static member StartChild : computation:Async&lt;&#39;T&gt; * ?millisecondsTimeout:int -&gt; Async&lt;Async&lt;&#39;T&gt;&gt;<br />static member StartChildAsTask : computation:Async&lt;&#39;T&gt; * ?taskCreationOptions:TaskCreationOptions -&gt; Async&lt;Task&lt;&#39;T&gt;&gt;<br />static member StartImmediate : computation:Async&lt;unit&gt; * ?cancellationToken:CancellationToken -&gt; unit<br />static member StartWithContinuations : computation:Async&lt;&#39;T&gt; * continuation:(&#39;T -&gt; unit) * exceptionContinuation:(exn -&gt; unit) * cancellationContinuation:(OperationCanceledException -&gt; unit) * ?cancellationToken:CancellationToken -&gt; unit<br />static member SwitchToContext : syncContext:SynchronizationContext -&gt; Async&lt;unit&gt;<br />static member SwitchToNewThread : unit -&gt; Async&lt;unit&gt;<br />static member SwitchToThreadPool : unit -&gt; Async&lt;unit&gt;<br />static member TryCancelled : computation:Async&lt;&#39;T&gt; * compensation:(OperationCanceledException -&gt; unit) -&gt; Async&lt;&#39;T&gt;<br />static member CancellationToken : Async&lt;CancellationToken&gt;<br />static member DefaultCancellationToken : CancellationToken<br /><br />Full name: Microsoft.FSharp.Control.Async<br /><br />--------------------<br />type Async&lt;&#39;T&gt;<br /><br />Full name: Microsoft.FSharp.Control.Async&lt;_&gt;</div>
+<div class="tip" id="fs48">static member Async.Parallel : computations:seq&lt;Async&lt;&#39;T&gt;&gt; -&gt; Async&lt;&#39;T []&gt;</div>
+<div class="tip" id="fs49">val printParameter : x:int -&gt; unit<br /><br />Full name: index.printParameter</div>
+<div class="tip" id="fs50">val printTwoParameters : x:int -&gt; (int -&gt; unit)<br /><br />Full name: index.printTwoParameters</div>
+<div class="tip" id="fs51">val subFunction : (int -&gt; unit)</div>
+<div class="tip" id="fs52">val y : int</div>
+<div class="tip" id="fs53">val printTwoParameters : x:int -&gt; y:int -&gt; unit<br /><br />Full name: index.printTwoParameters</div>
+<div class="tip" id="fs54">val add : x:int -&gt; y:int -&gt; int<br /><br />Full name: index.add</div>
+<div class="tip" id="fs55">val addOne : (int -&gt; int)<br /><br />Full name: index.addOne</div>
+<div class="tip" id="fs56">val twoPlusOne : int<br /><br />Full name: index.twoPlusOne</div>
+<div class="tip" id="fs57">val add2 : x:int -&gt; (int -&gt; int)<br /><br />Full name: index.add2</div>
+<div class="tip" id="fs58">val addInner : (int -&gt; int)</div>
+<div class="tip" id="fs59">val sum : values:int list -&gt; int<br /><br />Full name: index.sum</div>
+<div class="tip" id="fs60">val values : int list</div>
+<div class="tip" id="fs61">val calcSum : (int -&gt; int list -&gt; int)</div>
+<div class="tip" id="fs62">val total : int</div>
+<div class="tip" id="fs63">val remainingValues : int list</div>
+<div class="tip" id="fs64">val xs : int list</div>
 
         <!-- Any section element inside of this container is displayed as a slide -->
         <div class="slides">
             <section >
 
-<h3>What is FsReveal?</h3>
+<h2>Functional Programming</h2>
 
-<ul>
-<li>Generates <a href="http://lab.hakim.se/reveal-js/#/">reveal.js</a> presentation from <a href="http://daringfireball.net/projects/markdown/">markdown</a></li>
-<li>Utilizes <a href="https://github.com/tpetricek/FSharp.Formatting">FSharp.Formatting</a> for markdown parsing</li>
-<li>Get it from <a href="http://fsprojects.github.io/FsReveal/"><a href="http://fsprojects.github.io/FsReveal/">http://fsprojects.github.io/FsReveal/</a></a></li>
-</ul>
+<p>(with F#)</p>
 
 <p><img src="images/logo.png" alt="FsReveal" /></p>
 
@@ -71,28 +125,44 @@
 
 <section >
 
-<h3>Reveal.js</h3>
+<h2><span class="accent">Where </span>are we going?</h2>
 
-<ul>
-<li>A framework for easily creating beautiful presentations using HTML.</li>
-</ul>
-
-<blockquote>
-  <p><strong>Atwood's Law</strong>: any application that can be written in JavaScript, will eventually be written in JavaScript.</p>
-</blockquote>
+<ol>
+<li>What is Functional Programming?</li>
+<li>Why would you use it?</li>
+<li>Core Concepts</li>
+</ol>
 
 </section>
 
 <section >
 
-<h3>FSharp.Formatting</h3>
+<h4>What is</h4>
 
-<ul>
-<li>F# tools for generating documentation (Markdown processor and F# code formatter).</li>
-<li>It parses markdown and F# script file and generates HTML or PDF.</li>
-<li>Code syntax highlighting support.</li>
-<li>It also evaluates your F# code and produce tooltips.</li>
-</ul>
+<h2>Functional Programming?</h2>
+
+<p><img src="images/lambda.png" alt="Lambda" /></p>
+
+<aside class="notes">
+Lots could be said about what Functional Programming is. In fact, lots has been said! But<br/>
+I think it can be boiled down into two main concepts: <br/>
+- High-order functions or First Class functions<br/>
+- Absense of Side Effects<br/>
+</aside>
+
+</section>
+
+<section >
+
+<h3>Higher-Order Functions</h3>
+
+<p><span class="math">\((\tau_{1} \to \tau_{2}) \to \tau_{3}\)</span></p>
+
+<aside class="notes">
+A high-order function is a function that:<br/>
+- takes a function, or<br/>
+- returns a function<br/>
+</aside>
 
 </section>
 
@@ -100,26 +170,19 @@
 
 <section >
 
-<h3>Syntax Highlighting</h3>
+<h4>NO</h4>
 
-<h4>F# (with tooltips)</h4>
+<h1>Side Effects</h1>
 
-<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
-<span class="l">2: </span>
-<span class="l">3: </span>
-</pre></td>
-<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="i">a</span> <span class="o">=</span> <span class="n">5</span>
-<span class="k">let</span> <span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="f">factorial</span> <span onmouseout="hideTip(event, 'fs3', 3)" onmouseover="showTip(event, 'fs3', 3)" class="i">x</span> <span class="o">=</span> [<span class="n">1..</span><span onmouseout="hideTip(event, 'fs3', 4)" onmouseover="showTip(event, 'fs3', 4)" class="i">x</span>] <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs4', 5)" onmouseover="showTip(event, 'fs4', 5)" class="t">List</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs5', 6)" onmouseover="showTip(event, 'fs5', 6)" class="f">reduce</span> <span class="o">(*)</span>
-<span class="k">let</span> <span onmouseout="hideTip(event, 'fs6', 7)" onmouseover="showTip(event, 'fs6', 7)" class="i">c</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs2', 8)" onmouseover="showTip(event, 'fs2', 8)" class="f">factorial</span> <span onmouseout="hideTip(event, 'fs1', 9)" onmouseover="showTip(event, 'fs1', 9)" class="i">a</span>
-</code></pre></td>
-</tr>
-</table>
+<aside class="notes">
+- In mathematics, a function takes a parameter and returns a single value<br/>
+- Every time the function is called it returns the same value!<br/>
+- Pure functional programming requires absoltely no mutation whatsoever<br/>
+</aside>
 
 </section>
 
-<section author="Karlkim Suwanmongkol" description="Introduction to FsReveal" theme="night" title="FsReveal" transition="default">
-
-<h4>C#</h4>
+<section author="Dawson" description="Intro to Functional Programming with F#" theme="black" title="Functional Programming with F#" transition="slide">
 
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
 <span class="l">2: </span>
@@ -131,22 +194,113 @@
 <span class="l">8: </span>
 <span class="l">9: </span>
 </pre></td>
-<td class="snippet"><pre class="fssnip highlighted"><code lang="cs"><span class="k">using</span> System;
-
-<span class="k">class</span> Program
+<td class="snippet"><pre class="fssnip highlighted"><code lang="cs"><span class="k">private</span> <span class="k">int</span> _sum <span class="o">=</span> 0;
+<span class="k">public</span> <span class="k">void</span> AddValues(List&lt;<span class="k">int</span>&gt; nums)
 {
-    <span class="k">static</span> <span class="k">void</span> Main()
+    <span class="k">foreach</span> (<span class="k">var</span> n <span class="k">in</span> nums)
     {
-        Console.WriteLine(<span class="s">"Hello, world!"</span>);
+        <span class="c">// any mutation is illegal in a pure functional program</span>
+        _sum <span class="o">+</span><span class="o">=</span> n; 
     }
 }
 </code></pre></td></tr></table>
 
 </section>
 
-<section author="Karlkim Suwanmongkol" description="Introduction to FsReveal" theme="night" title="FsReveal" transition="default">
+<section author="Dawson" description="Intro to Functional Programming with F#" theme="black" title="Functional Programming with F#" transition="slide">
 
-<h4>JavaScript</h4>
+<p>Is that <span class="accent">it?</span> I can do this with C#/Java/JavaScript!</p>
+
+<p><img src="images/not_convinced.jpg" alt="not convinced" /></p>
+
+<aside class="notes">
+You're right! You can use Functional Programming in any language since it's a paradigm, <br/>
+not a language in itself.<br/>
+Languages designed to be functional help because their syntax aids you to think functionally.<br/>
+</aside>
+
+</section>
+
+<section author="Dawson" description="Intro to Functional Programming with F#" theme="black" title="Functional Programming with F#" transition="slide">
+
+<p class="note" style="text-align: center">Fine. But... <span class="accent">IMMUTABLE</span> data?</p>
+
+<p><img src="images/immutable.jpg" alt="immutable data" /></p>
+
+<aside class="notes">
+Fear not, I will show you. But first, an F# primer!<br/>
+</aside>
+
+</section>
+
+</section>
+
+<section >
+
+<section >
+
+<h4>Quick</h4>
+
+<h1>F# Primer</h1>
+
+</section>
+
+<section author="Dawson" description="Intro to Functional Programming with F#" theme="black" title="Functional Programming with F#" transition="slide">
+
+<h3>Defining "Variables"</h3>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="i">name</span> <span class="o">=</span> <span class="s">&quot;Dawson Kroeker&quot;</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="i">age</span> <span class="o">=</span> <span class="n">32</span>
+</code></pre></td>
+</tr>
+</table>
+
+</section>
+
+<section author="Dawson" description="Intro to Functional Programming with F#" theme="black" title="Functional Programming with F#" transition="slide">
+
+<h3>Collections</h3>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs3', 3)" onmouseover="showTip(event, 'fs3', 3)" class="i">kidsAges</span> <span class="o">=</span> [<span class="n">2</span>; <span class="n">5</span>; <span class="n">6</span>]
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs4', 4)" onmouseover="showTip(event, 'fs4', 4)" class="i">kidsAgesInJuly</span> <span class="o">=</span> <span class="n">0</span> <span class="o">::</span> <span onmouseout="hideTip(event, 'fs3', 5)" onmouseover="showTip(event, 'fs3', 5)" class="i">kidsAges</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs5', 6)" onmouseover="showTip(event, 'fs5', 6)" class="i">years</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs6', 7)" onmouseover="showTip(event, 'fs6', 7)" class="i">seq</span> { <span class="n">1983</span> <span class="o">..</span> <span class="n">2064</span> }
+</code></pre></td>
+</tr>
+</table>
+
+</section>
+
+<section author="Dawson" description="Intro to Functional Programming with F#" theme="black" title="Functional Programming with F#" transition="slide">
+
+<h3>Functions</h3>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+<span class="l">6: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// define a function with two parameters</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs7', 8)" onmouseover="showTip(event, 'fs7', 8)" class="f">fullname</span> <span onmouseout="hideTip(event, 'fs8', 9)" onmouseover="showTip(event, 'fs8', 9)" class="i">first</span> <span onmouseout="hideTip(event, 'fs9', 10)" onmouseover="showTip(event, 'fs9', 10)" class="i">last</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs10', 11)" onmouseover="showTip(event, 'fs10', 11)" class="f">sprintf</span> <span class="s">&quot;</span><span class="pf">%s</span><span class="s"> </span><span class="pf">%s</span><span class="s">&quot;</span> <span onmouseout="hideTip(event, 'fs8', 12)" onmouseover="showTip(event, 'fs8', 12)" class="i">first</span> <span onmouseout="hideTip(event, 'fs9', 13)" onmouseover="showTip(event, 'fs9', 13)" class="i">last</span>
+
+<span class="c">// call the function</span>
+<span onmouseout="hideTip(event, 'fs7', 14)" onmouseover="showTip(event, 'fs7', 14)" class="f">fullname</span> <span class="s">&quot;Dawson&quot;</span> <span class="s">&quot;Kroeker&quot;</span>
+<span class="c">// val it : string = &quot;Dawson Kroeker&quot;</span>
+</code></pre></td>
+</tr>
+</table>
+
+</section>
+
+<section author="Dawson" description="Intro to Functional Programming with F#" theme="black" title="Functional Programming with F#" transition="slide">
 
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
 <span class="l"> 2: </span>
@@ -160,34 +314,28 @@
 <span class="l">10: </span>
 <span class="l">11: </span>
 <span class="l">12: </span>
-<span class="l">13: </span>
-<span class="l">14: </span>
-<span class="l">15: </span>
-<span class="l">16: </span>
 </pre></td>
-<td class="snippet"><pre class="fssnip highlighted"><code lang="js"><span class="k">function</span> copyWithEvaluation(iElem, elem) {
-    <span class="k">return</span> <span class="k">function</span> (obj) {
-        <span class="k">var</span> newObj <span class="o">=</span> {};
-        <span class="k">for</span> (<span class="k">var</span> p <span class="k">in</span> obj) {
-            <span class="k">var</span> v <span class="o">=</span> obj[p];
-            <span class="k">if</span> (<span class="k">typeof</span> v <span class="o">=</span><span class="o">=</span><span class="o">=</span> <span class="s">"function"</span>) {
-                v <span class="o">=</span> v(iElem, elem);
-            }
-            newObj[p] <span class="o">=</span> v;
-        }
-        <span class="k">if</span> (!newObj.exactTiming) {
-            newObj.delay <span class="o">+</span><span class="o">=</span> exports._libraryDelay;
-        }
-        <span class="k">return</span> newObj;
-    };
-}
-</code></pre></td></tr></table>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// multiline functions are indented</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs11', 15)" onmouseover="showTip(event, 'fs11', 15)" class="f">evens</span> <span onmouseout="hideTip(event, 'fs12', 16)" onmouseover="showTip(event, 'fs12', 16)" class="i">values</span> <span class="o">=</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs13', 17)" onmouseover="showTip(event, 'fs13', 17)" class="f">isEven</span> <span onmouseout="hideTip(event, 'fs14', 18)" onmouseover="showTip(event, 'fs14', 18)" class="i">x</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs14', 19)" onmouseover="showTip(event, 'fs14', 19)" class="i">x</span> <span class="o">%</span> <span class="n">2</span> <span class="o">=</span> <span class="n">0</span> <span class="c">// nested function</span>
+    <span onmouseout="hideTip(event, 'fs15', 20)" onmouseover="showTip(event, 'fs15', 20)" class="t">Seq</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs16', 21)" onmouseover="showTip(event, 'fs16', 21)" class="f">filter</span> <span onmouseout="hideTip(event, 'fs13', 22)" onmouseover="showTip(event, 'fs13', 22)" class="f">isEven</span> <span onmouseout="hideTip(event, 'fs12', 23)" onmouseover="showTip(event, 'fs12', 23)" class="i">values</span>
+
+<span class="c">// &quot;pipe&quot; the output of one operation into another</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs17', 24)" onmouseover="showTip(event, 'fs17', 24)" class="f">sumOfEvens</span> <span onmouseout="hideTip(event, 'fs12', 25)" onmouseover="showTip(event, 'fs12', 25)" class="i">values</span> <span class="o">=</span> 
+    <span onmouseout="hideTip(event, 'fs12', 26)" onmouseover="showTip(event, 'fs12', 26)" class="i">values</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs11', 27)" onmouseover="showTip(event, 'fs11', 27)" class="f">evens</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs15', 28)" onmouseover="showTip(event, 'fs15', 28)" class="t">Seq</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs18', 29)" onmouseover="showTip(event, 'fs18', 29)" class="f">sum</span>
+
+<span class="c">// without piping</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs19', 30)" onmouseover="showTip(event, 'fs19', 30)" class="f">sumOfEvensWithoutPiping</span> <span onmouseout="hideTip(event, 'fs12', 31)" onmouseover="showTip(event, 'fs12', 31)" class="i">values</span> <span class="o">=</span> 
+    <span onmouseout="hideTip(event, 'fs15', 32)" onmouseover="showTip(event, 'fs15', 32)" class="t">Seq</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs18', 33)" onmouseover="showTip(event, 'fs18', 33)" class="f">sum</span> (<span onmouseout="hideTip(event, 'fs11', 34)" onmouseover="showTip(event, 'fs11', 34)" class="f">evens</span> <span onmouseout="hideTip(event, 'fs12', 35)" onmouseover="showTip(event, 'fs12', 35)" class="i">values</span>)
+</code></pre></td>
+</tr>
+</table>
 
 </section>
 
-<section author="Karlkim Suwanmongkol" description="Introduction to FsReveal" theme="night" title="FsReveal" transition="default">
+<section author="Dawson" description="Intro to Functional Programming with F#" theme="black" title="Functional Programming with F#" transition="slide">
 
-<h4>Haskell</h4>
+<h3>Complex Types</h3>
 
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
 <span class="l"> 2: </span>
@@ -199,45 +347,272 @@
 <span class="l"> 8: </span>
 <span class="l"> 9: </span>
 <span class="l">10: </span>
+<span class="l">11: </span>
+<span class="l">12: </span>
 </pre></td>
-<td class="snippet"><pre class="fssnip highlighted"><code lang="haskell">recur_count k <span class="prep">=</span> 1 : 1 : 
-    zipWith recurAdd (recur_count k) (tail (recur_count k))
-        <span class="k">where</span> recurAdd x y <span class="prep">=</span> k * x <span class="prep">+</span> y
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// tuples</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs20', 36)" onmouseover="showTip(event, 'fs20', 36)" class="i">coord</span> <span class="o">=</span> <span class="n">123</span>,<span class="n">456</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs21', 37)" onmouseover="showTip(event, 'fs21', 37)" class="i">threeTuple</span> <span class="o">=</span> <span class="s">&quot;a&quot;</span>,<span class="n">1</span>,<span class="k">false</span>
 
-main <span class="prep">=</span> <span class="k">do</span>
-  argv <span class="prep">&lt;</span><span class="prep">-</span> getArgs
-  inputFile <span class="prep">&lt;</span><span class="prep">-</span> openFile (head argv) ReadMode
-  line <span class="prep">&lt;</span><span class="prep">-</span> hGetLine inputFile
-  <span class="k">let</span> [n,k] <span class="prep">=</span> map read (words line)
-  printf <span class="s">"%d\n"</span> ((recur_count k) !! (n-1))
-</code></pre></td></tr></table>
+<span class="c">// record types with named fields</span>
+<span class="k">type</span> <span onmouseout="hideTip(event, 'fs22', 38)" onmouseover="showTip(event, 'fs22', 38)" class="t">Person</span> <span class="o">=</span> {<span onmouseout="hideTip(event, 'fs23', 39)" onmouseover="showTip(event, 'fs23', 39)" class="i">Name</span> <span class="o">:</span> <span onmouseout="hideTip(event, 'fs24', 40)" onmouseover="showTip(event, 'fs24', 40)" class="t">string</span>; <span onmouseout="hideTip(event, 'fs25', 41)" onmouseover="showTip(event, 'fs25', 41)" class="i">Age</span> <span class="o">:</span> <span onmouseout="hideTip(event, 'fs26', 42)" onmouseover="showTip(event, 'fs26', 42)" class="t">int</span>}
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs27', 43)" onmouseover="showTip(event, 'fs27', 43)" class="i">emma</span> <span class="o">=</span> {<span class="i">Name</span> <span class="o">=</span> <span class="s">&quot;Emma&quot;</span>; <span class="i">Age</span> <span class="o">=</span> <span class="n">6</span>}
 
-<p><em>code from <a href="https://github.com/NashFP/rosalind/blob/master/mark_wutka%2Bhaskell/FIB/fib_ziplist.hs">NashFP/rosalind</a></em></p>
+<span class="c">// union types</span>
+<span class="k">type</span> <span onmouseout="hideTip(event, 'fs28', 44)" onmouseover="showTip(event, 'fs28', 44)" class="t">FamilyMember</span> <span class="o">=</span>
+    | <span onmouseout="hideTip(event, 'fs29', 45)" onmouseover="showTip(event, 'fs29', 45)" class="p">Child</span> <span class="k">of</span> <span onmouseout="hideTip(event, 'fs22', 46)" onmouseover="showTip(event, 'fs22', 46)" class="t">Person</span>
+    | <span onmouseout="hideTip(event, 'fs30', 47)" onmouseover="showTip(event, 'fs30', 47)" class="p">Parent</span> <span class="k">of</span> <span onmouseout="hideTip(event, 'fs22', 48)" onmouseover="showTip(event, 'fs22', 48)" class="t">Person</span>
+</code></pre></td>
+</tr>
+</table>
 
 </section>
 
-<section author="Karlkim Suwanmongkol" description="Introduction to FsReveal" theme="night" title="FsReveal" transition="default">
+</section>
 
-<h3>SQL</h3>
+<section >
+
+<h3><span class="accent">Why</span> would you use it?</h3>
+
+</section>
+
+<section >
+
+<section >
+
+<h3>Concise</h3>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// one-liners</span>
+[<span class="n">1..</span><span class="n">100</span>] <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs31', 49)" onmouseover="showTip(event, 'fs31', 49)" class="t">List</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs32', 50)" onmouseover="showTip(event, 'fs32', 50)" class="f">sum</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs33', 51)" onmouseover="showTip(event, 'fs33', 51)" class="f">printfn</span> <span class="s">&quot;sum=</span><span class="pf">%d</span><span class="s">&quot;</span>
+</code></pre></td>
+</tr>
+</table>
+
+</section>
+
+<section author="Dawson" description="Intro to Functional Programming with F#" theme="black" title="Functional Programming with F#" transition="slide">
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// no curly braces, semicolons or parentheses</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs34', 52)" onmouseover="showTip(event, 'fs34', 52)" class="f">square</span> <span onmouseout="hideTip(event, 'fs14', 53)" onmouseover="showTip(event, 'fs14', 53)" class="i">x</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs14', 54)" onmouseover="showTip(event, 'fs14', 54)" class="i">x</span> <span class="o">*</span> <span onmouseout="hideTip(event, 'fs14', 55)" onmouseover="showTip(event, 'fs14', 55)" class="i">x</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs35', 56)" onmouseover="showTip(event, 'fs35', 56)" class="i">sq</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs34', 57)" onmouseover="showTip(event, 'fs34', 57)" class="f">square</span> <span class="n">42</span>
+</code></pre></td>
+</tr>
+</table>
+
+</section>
+
+<section author="Dawson" description="Intro to Functional Programming with F#" theme="black" title="Functional Programming with F#" transition="slide">
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// simple types in one line</span>
+<span class="k">type</span> <span onmouseout="hideTip(event, 'fs22', 58)" onmouseover="showTip(event, 'fs22', 58)" class="i">Person</span> <span class="o">=</span> {<span class="i">Name</span> <span class="o">:</span> <span onmouseout="hideTip(event, 'fs24', 59)" onmouseover="showTip(event, 'fs24', 59)" class="i">string</span>; <span class="i">Age</span> <span class="o">:</span> <span onmouseout="hideTip(event, 'fs26', 60)" onmouseover="showTip(event, 'fs26', 60)" class="i">int</span>}
+</code></pre></td>
+</tr>
+</table>
+
+</section>
+
+<section author="Dawson" description="Intro to Functional Programming with F#" theme="black" title="Functional Programming with F#" transition="slide">
 
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
 <span class="l">2: </span>
 <span class="l">3: </span>
 <span class="l">4: </span>
 </pre></td>
-<td class="snippet"><pre class="fssnip highlighted"><code lang="sql"><span class="k">select</span> *
-<span class="k">from</span>
-(<span class="k">select</span> 1 <span class="k">as</span> Id <span class="k">union</span> <span class="k">all</span> <span class="k">select</span> 2 <span class="k">union</span> <span class="k">all</span> <span class="k">select</span> 3) <span class="k">as</span> X
-<span class="k">where</span> Id <span class="k">in</span> (@Ids1, @Ids2, @Ids3)
-</code></pre></td></tr></table>
-
-<p><em>sql from <a href="https://code.google.com/p/dapper-dot-net/">Dapper</a></em></p>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// complex types in a few lines</span>
+<span class="k">type</span> <span onmouseout="hideTip(event, 'fs36', 61)" onmouseover="showTip(event, 'fs36', 61)" class="t">Employee</span> <span class="o">=</span> 
+  | <span onmouseout="hideTip(event, 'fs37', 62)" onmouseover="showTip(event, 'fs37', 62)" class="p">Worker</span> <span class="k">of</span> <span onmouseout="hideTip(event, 'fs22', 63)" onmouseover="showTip(event, 'fs22', 63)" class="t">Person</span>
+  | <span onmouseout="hideTip(event, 'fs38', 64)" onmouseover="showTip(event, 'fs38', 64)" class="p">Manager</span> <span class="k">of</span> <span onmouseout="hideTip(event, 'fs36', 65)" onmouseover="showTip(event, 'fs36', 65)" class="t">Employee</span> <span onmouseout="hideTip(event, 'fs39', 66)" onmouseover="showTip(event, 'fs39', 66)" class="t">list</span>
+</code></pre></td>
+</tr>
+</table>
 
 </section>
 
-<section author="Karlkim Suwanmongkol" description="Introduction to FsReveal" theme="night" title="FsReveal" transition="default">
+<section author="Dawson" description="Intro to Functional Programming with F#" theme="black" title="Functional Programming with F#" transition="slide">
 
-<h3>C/AL</h3>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// type inference</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs40', 67)" onmouseover="showTip(event, 'fs40', 67)" class="i">jdoe</span> <span class="o">=</span> {<span class="i">Name</span><span class="o">=</span><span class="s">&quot;John Doe&quot;</span>; <span class="i">Age</span> <span class="o">=</span> <span class="n">35</span>}
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs41', 68)" onmouseover="showTip(event, 'fs41', 68)" class="i">worker</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs37', 69)" onmouseover="showTip(event, 'fs37', 69)" class="p">Worker</span> <span onmouseout="hideTip(event, 'fs40', 70)" onmouseover="showTip(event, 'fs40', 70)" class="i">jdoe</span>
+</code></pre></td>
+</tr>
+</table>
+
+</section>
+
+</section>
+
+<section >
+
+<section >
+
+<h3>Concurrency</h3>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+<span class="l">6: </span>
+<span class="l">7: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs42', 71)" onmouseover="showTip(event, 'fs42', 71)" class="f">doSomething</span> <span onmouseout="hideTip(event, 'fs14', 72)" onmouseover="showTip(event, 'fs14', 72)" class="i">x</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs33', 73)" onmouseover="showTip(event, 'fs33', 73)" class="f">printfn</span> <span class="s">&quot;Running </span><span class="pf">%i</span><span class="s">&quot;</span> <span onmouseout="hideTip(event, 'fs14', 74)" onmouseover="showTip(event, 'fs14', 74)" class="i">x</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs43', 75)" onmouseover="showTip(event, 'fs43', 75)" class="i">task</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs44', 76)" onmouseover="showTip(event, 'fs44', 76)" class="i">async</span> { <span onmouseout="hideTip(event, 'fs42', 77)" onmouseover="showTip(event, 'fs42', 77)" class="f">doSomething</span> <span class="n">1</span> }
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs45', 78)" onmouseover="showTip(event, 'fs45', 78)" class="i">tasks</span> <span class="o">=</span> 
+    [ <span class="k">for</span> <span onmouseout="hideTip(event, 'fs46', 79)" onmouseover="showTip(event, 'fs46', 79)" class="i">i</span> <span class="k">in</span> <span class="n">1</span> <span class="o">..</span> <span class="n">40</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs44', 80)" onmouseover="showTip(event, 'fs44', 80)" class="i">async</span> { <span onmouseout="hideTip(event, 'fs42', 81)" onmouseover="showTip(event, 'fs42', 81)" class="f">doSomething</span> <span onmouseout="hideTip(event, 'fs46', 82)" onmouseover="showTip(event, 'fs46', 82)" class="i">i</span> } ]
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs47', 83)" onmouseover="showTip(event, 'fs47', 83)" class="t">Async</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs48', 84)" onmouseover="showTip(event, 'fs48', 84)" class="f">Parallel</span>
+</code></pre></td>
+</tr>
+</table>
+
+</section>
+
+<section author="Dawson" description="Intro to Functional Programming with F#" theme="black" title="Functional Programming with F#" transition="slide">
+
+<p><span class="math">\(immutability \to safer\;concurrency\)</span></p>
+
+</section>
+
+</section>
+
+<section data-background="images/freight_train.png">
+
+<div style="text-align: left; top: 0px; height: 100vh">There is a freight train barreling down the tracks towards us, with 
+multi-core emblazoned on it; and you’d better be ready by the time it gets here. --<cite>
+<a href="https://pragprog.com/magazines/2013-01/functional-programming-basics" style="color: #FFFFFF; font-weight: bold">Uncle Bob</a>
+</cite></div>
+
+<aside class="notes">
+Uncle Bob Quote:<br/>
+Well, boys and girls, welcome to the wonderful world of simultaneity! Now, how are you going to deal with it?<br/>
+And the answer to that is, simply, “Abandon all assignment, ye who enter here..." You don’t need semaphores if you don’t have <br/>
+side effects!<br/>
+So that’s the big deal about functional languages; and it is one big fricking deal. There is a freight train barreling down <br/>
+the tracks towards us, with multi-core emblazoned on it; and you’d better be ready by the time it gets here. <br/>
+-- Robert C. Martin<br/>
+</aside>
+
+</section>
+
+<section >
+
+<h4>Functional Programming</h4>
+
+<h1>Concepts</h1>
+
+</section>
+
+<section data-background="images/curry.jpg">
+
+<section data-background="images/curry.jpg">
+
+<h2><span class="altHeader">Currying</span></h2>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// function with one parameter</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs49', 85)" onmouseover="showTip(event, 'fs49', 85)" class="f">printParameter</span> <span onmouseout="hideTip(event, 'fs14', 86)" onmouseover="showTip(event, 'fs14', 86)" class="i">x</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs33', 87)" onmouseover="showTip(event, 'fs33', 87)" class="f">printfn</span> <span class="s">&quot;x=</span><span class="pf">%i</span><span class="s">&quot;</span> <span onmouseout="hideTip(event, 'fs14', 88)" onmouseover="showTip(event, 'fs14', 88)" class="i">x</span>
+</code></pre></td>
+</tr>
+</table>
+
+<aside class="notes">
+- Mathematical functions take only one parameter, does this mean FP languages can only accept one parameter?<br/>
+- No!<br/>
+</aside>
+
+</section>
+
+<section author="Dawson" description="Intro to Functional Programming with F#" theme="black" title="Functional Programming with F#" transition="slide">
+
+<p class="note shadow">"Fake" multiple parameters by returning a function:</p>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs50', 89)" onmouseover="showTip(event, 'fs50', 89)" class="f">printTwoParameters</span> <span onmouseout="hideTip(event, 'fs14', 90)" onmouseover="showTip(event, 'fs14', 90)" class="i">x</span>  <span class="o">=</span>      <span class="c">// only one parameter</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs51', 91)" onmouseover="showTip(event, 'fs51', 91)" class="f">subFunction</span> <span onmouseout="hideTip(event, 'fs52', 92)" onmouseover="showTip(event, 'fs52', 92)" class="i">y</span> <span class="o">=</span>          <span class="c">// new inner function with one param</span>
+        <span onmouseout="hideTip(event, 'fs33', 93)" onmouseover="showTip(event, 'fs33', 93)" class="f">printfn</span> <span class="s">&quot;x=</span><span class="pf">%i</span><span class="s"> y=</span><span class="pf">%i</span><span class="s">&quot;</span> <span onmouseout="hideTip(event, 'fs14', 94)" onmouseover="showTip(event, 'fs14', 94)" class="i">x</span> <span onmouseout="hideTip(event, 'fs52', 95)" onmouseover="showTip(event, 'fs52', 95)" class="i">y</span>  
+    <span onmouseout="hideTip(event, 'fs51', 96)" onmouseover="showTip(event, 'fs51', 96)" class="f">subFunction</span>                  <span class="c">// return the inner function</span>
+</code></pre></td>
+</tr>
+</table>
+
+</section>
+
+<section author="Dawson" description="Intro to Functional Programming with F#" theme="black" title="Functional Programming with F#" transition="slide">
+
+<p class="note shadow">Curried Function:</p>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// function that takes 2 parameters (sort of)</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs53', 97)" onmouseover="showTip(event, 'fs53', 97)" class="f">printTwoParameters</span> <span onmouseout="hideTip(event, 'fs14', 98)" onmouseover="showTip(event, 'fs14', 98)" class="i">x</span> <span onmouseout="hideTip(event, 'fs52', 99)" onmouseover="showTip(event, 'fs52', 99)" class="i">y</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs33', 100)" onmouseover="showTip(event, 'fs33', 100)" class="f">printfn</span> <span class="s">&quot;x=</span><span class="pf">%i</span><span class="s"> y=</span><span class="pf">%i</span><span class="s">&quot;</span> <span onmouseout="hideTip(event, 'fs14', 101)" onmouseover="showTip(event, 'fs14', 101)" class="i">x</span> <span onmouseout="hideTip(event, 'fs52', 102)" onmouseover="showTip(event, 'fs52', 102)" class="i">y</span>
+</code></pre></td>
+</tr>
+</table>
+
+<br />
+<p class="note shadow">Could call this with one parameter:</p>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs53', 103)" onmouseover="showTip(event, 'fs53', 103)" class="f">printTwoParameters</span> <span class="n">1</span> <span class="c">// returns a function!</span>
+</code></pre></td>
+</tr>
+</table>
+
+</section>
+
+</section>
+
+<section >
+
+<section >
+
+<h3>Partial Application</h3>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs54', 104)" onmouseover="showTip(event, 'fs54', 104)" class="f">add</span> <span onmouseout="hideTip(event, 'fs14', 105)" onmouseover="showTip(event, 'fs14', 105)" class="i">x</span> <span onmouseout="hideTip(event, 'fs52', 106)" onmouseover="showTip(event, 'fs52', 106)" class="i">y</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs14', 107)" onmouseover="showTip(event, 'fs14', 107)" class="i">x</span> <span class="o">+</span> <span onmouseout="hideTip(event, 'fs52', 108)" onmouseover="showTip(event, 'fs52', 108)" class="i">y</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs55', 109)" onmouseover="showTip(event, 'fs55', 109)" class="f">addOne</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs54', 110)" onmouseover="showTip(event, 'fs54', 110)" class="f">add</span> <span class="n">1</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs56', 111)" onmouseover="showTip(event, 'fs56', 111)" class="i">twoPlusOne</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs55', 112)" onmouseover="showTip(event, 'fs55', 112)" class="f">addOne</span> <span class="n">2</span>
+<span class="c">// val twoPlusOne : int = 3</span>
+</code></pre></td>
+</tr>
+</table>
+
+</section>
+
+<section author="Dawson" description="Intro to Functional Programming with F#" theme="black" title="Functional Programming with F#" transition="slide">
+
+<p class="note">Breaking it down:</p>
 
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
 <span class="l"> 2: </span>
@@ -251,50 +626,118 @@ main <span class="prep">=</span> <span class="k">do</span>
 <span class="l">10: </span>
 <span class="l">11: </span>
 <span class="l">12: </span>
-<span class="l">13: </span>
-<span class="l">14: </span>
 </pre></td>
-<td class="snippet"><pre class="fssnip"><code lang="cal">PROCEDURE FizzBuzz(n : Integer) r_Text : Text[1024];
-VAR
-  l_Text : Text[1024];
-BEGIN
-  r_Text := '';
-  l_Text := FORMAT(n);
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs54', 113)" onmouseover="showTip(event, 'fs54', 113)" class="f">add</span> <span onmouseout="hideTip(event, 'fs14', 114)" onmouseover="showTip(event, 'fs14', 114)" class="i">x</span> <span onmouseout="hideTip(event, 'fs52', 115)" onmouseover="showTip(event, 'fs52', 115)" class="i">y</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs14', 116)" onmouseover="showTip(event, 'fs14', 116)" class="i">x</span> <span class="o">+</span> <span onmouseout="hideTip(event, 'fs52', 117)" onmouseover="showTip(event, 'fs52', 117)" class="i">y</span>
+<span class="c">// val add : x:int -&gt; y:int -&gt; int</span>
 
-  IF (n MOD 3 = 0) OR (STRPOS(l_Text,'3') > 0) THEN
-    r_Text := 'Fizz';
-  IF (n MOD 5 = 0) OR (STRPOS(l_Text,'5') > 0) THEN
-    r_Text := r_Text + 'Buzz';
-  IF r_Text = '' THEN
-    r_Text := l_Text;
-END;
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs57', 118)" onmouseover="showTip(event, 'fs57', 118)" class="f">add2</span> <span onmouseout="hideTip(event, 'fs14', 119)" onmouseover="showTip(event, 'fs14', 119)" class="i">x</span> <span class="o">=</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs58', 120)" onmouseover="showTip(event, 'fs58', 120)" class="f">addInner</span> <span onmouseout="hideTip(event, 'fs52', 121)" onmouseover="showTip(event, 'fs52', 121)" class="i">y</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs14', 122)" onmouseover="showTip(event, 'fs14', 122)" class="i">x</span> <span class="o">+</span> <span onmouseout="hideTip(event, 'fs52', 123)" onmouseover="showTip(event, 'fs52', 123)" class="i">y</span>
+    <span onmouseout="hideTip(event, 'fs58', 124)" onmouseover="showTip(event, 'fs58', 124)" class="f">addInner</span>
+<span class="c">// val add2 : x:int -&gt; (int -&gt; int)</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs55', 125)" onmouseover="showTip(event, 'fs55', 125)" class="f">addOne</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs54', 126)" onmouseover="showTip(event, 'fs54', 126)" class="f">add</span> <span class="n">1</span>
+<span class="c">// val addOne : (int -&gt; int)</span>
+<span class="c">// returns addInner with x set to 1</span>
+</code></pre></td>
+</tr>
+</table>
+
+</section>
+
+</section>
+
+<section data-background="images/recursive.jpg">
+
+<h2><div class="shadow" style="margin-top: -100px;">Recursion</div></h2>
+
+</section>
+
+<section >
+
+<section >
+
+<h3>Immutability and Loops</h3>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+<span class="l">6: </span>
+<span class="l">7: </span>
+<span class="l">8: </span>
+<span class="l">9: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="cs"><span class="k">public</span> <span class="k">static</span> <span class="k">int</span> Sum(IEnumerable&lt;<span class="k">int</span>&gt; values)
+{
+    <span class="k">var</span> sum <span class="o">=</span> 0;
+    <span class="k">foreach</span> (<span class="k">var</span> v <span class="k">in</span> values)
+    {
+        sum <span class="o">+</span><span class="o">=</span> v; <span class="c">// illegal in a pure functional language</span>
+    }
+    <span class="k">return</span> sum;
+}
 </code></pre></td></tr></table>
 
 </section>
 
+<section author="Dawson" description="Intro to Functional Programming with F#" theme="black" title="Functional Programming with F#" transition="slide">
+
+<h3>Same loop without any mutation</h3>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+<span class="l">6: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs59', 127)" onmouseover="showTip(event, 'fs59', 127)" class="f">sum</span> <span onmouseout="hideTip(event, 'fs60', 128)" onmouseover="showTip(event, 'fs60', 128)" class="i">values</span> <span class="o">=</span>
+    <span class="k">let</span> <span class="k">rec</span> <span onmouseout="hideTip(event, 'fs61', 129)" onmouseover="showTip(event, 'fs61', 129)" class="f">calcSum</span> <span onmouseout="hideTip(event, 'fs62', 130)" onmouseover="showTip(event, 'fs62', 130)" class="i">total</span> <span onmouseout="hideTip(event, 'fs63', 131)" onmouseover="showTip(event, 'fs63', 131)" class="i">remainingValues</span> <span class="o">=</span> 
+        <span class="k">match</span> <span onmouseout="hideTip(event, 'fs63', 132)" onmouseover="showTip(event, 'fs63', 132)" class="i">remainingValues</span> <span class="k">with</span>
+        | [] <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs62', 133)" onmouseover="showTip(event, 'fs62', 133)" class="i">total</span>
+        | <span onmouseout="hideTip(event, 'fs14', 134)" onmouseover="showTip(event, 'fs14', 134)" class="i">x</span> <span class="o">::</span> <span onmouseout="hideTip(event, 'fs64', 135)" onmouseover="showTip(event, 'fs64', 135)" class="i">xs</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs61', 136)" onmouseover="showTip(event, 'fs61', 136)" class="f">calcSum</span> (<span onmouseout="hideTip(event, 'fs62', 137)" onmouseover="showTip(event, 'fs62', 137)" class="i">total</span> <span class="o">+</span> <span onmouseout="hideTip(event, 'fs14', 138)" onmouseover="showTip(event, 'fs14', 138)" class="i">x</span>) <span onmouseout="hideTip(event, 'fs64', 139)" onmouseover="showTip(event, 'fs64', 139)" class="i">xs</span>
+    <span onmouseout="hideTip(event, 'fs61', 140)" onmouseover="showTip(event, 'fs61', 140)" class="f">calcSum</span> <span class="n">0</span> <span onmouseout="hideTip(event, 'fs60', 141)" onmouseover="showTip(event, 'fs60', 141)" class="i">values</span>
+</code></pre></td>
+</tr>
+</table>
+
+</section>
+
+<section author="Dawson" description="Intro to Functional Programming with F#" theme="black" title="Functional Programming with F#" transition="slide">
+
+<p>Even <span class="altHeader" style="font-size: 175%">Easier</span></p>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs31', 142)" onmouseover="showTip(event, 'fs31', 142)" class="t">List</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs32', 143)" onmouseover="showTip(event, 'fs32', 143)" class="f">sum</span> [<span class="n">1</span>;<span class="n">2</span>;<span class="n">3</span>;<span class="n">4</span>;<span class="n">5</span>]
+</code></pre></td>
+</tr>
+</table>
+
+</section>
+
 </section>
 
 <section >
 
-<p><strong>Bayes' Rule in LaTeX</strong></p>
+<h2>Sites you <span class="accent">must</span> visit</h2>
 
-<p><span class="math">\(\Pr(A|B)=\frac{\Pr(B|A)\Pr(A)}{\Pr(B|A)\Pr(A)+\Pr(B|\neg A)\Pr(\neg A)}\)</span></p>
+<ol>
+<li><a href="http://fsharpforfunandprofit.com/"><a href="http://fsharpforfunandprofit.com/">http://fsharpforfunandprofit.com/</a> *</a></li>
+<li><a href="http://www.tryfsharp.org/"><a href="http://www.tryfsharp.org/">http://www.tryfsharp.org/</a></a></li>
+<li><a href="http://fsharp.org/"><a href="http://fsharp.org/">http://fsharp.org/</a></a></li>
+</ol>
+
+<br /><br />
+<div class="footnote">* Note: I stole a LOT of material from here for this presentation.</div>
 
 </section>
 
 <section >
 
-<h3>The Reality of a Developer's Life</h3>
-
-<p><strong>When I show my boss that I've fixed a bug:</strong></p>
-
-<p><img src="http://www.topito.com/wp-content/uploads/2013/01/code-07.gif" alt="When I show my boss that I've fixed a bug" /></p>
-
-<p><strong>When your regular expression returns what you expect:</strong></p>
-
-<p><img src="http://www.topito.com/wp-content/uploads/2013/01/code-03.gif" alt="When your regular expression returns what you expect" /></p>
-
-<p><em>from <a href="http://server.dzone.com/articles/reality-developers-life-gifs">The Reality of a Developer's Life - in GIFs, Of Course</a></em></p>
+<h1>Questions?</h1>
 
 </section>
 
@@ -316,7 +759,7 @@ END;
             history: true,
             center: true,
 
-            transition: 'default', // default/cube/page/concave/zoom/linear/fade/none
+            transition: 'slide', // default/cube/page/concave/zoom/linear/fade/none
 
             // Parallax scrolling
             // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
