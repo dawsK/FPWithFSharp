@@ -1,0 +1,59 @@
+@import url(http://fonts.googleapis.com/css?family=Kreon:300,400,700|Lobster+Two:700italic|Oswald:400,300,700);
+div.slides img {
+	background-color: transparent;
+	box-shadow: none;
+	border: none;
+}
+
+body {
+	background-image: url('../images/background.jpg')
+}
+
+.reveal h1,
+.reveal h2,
+.reveal h3 {
+	font-family: 'Kreon', serif;
+}
+
+.reveal h4 {
+	font-family: 'Lobster Two', cursive;
+	font-style: italic;
+	text-transform: none;
+	color: #378BBA;
+    text-shadow: 5px 5px 5px #111111;
+    font-size: 1.3em
+}
+
+.reveal {
+	/*font-family: 'Lobster Two', cursive;*/
+	
+	font-family: 'Oswald', sans-serif;
+}
+
+.reveal .note {
+	text-align: left;
+	margin-left: 20px;
+    text-transform: none;
+}
+
+.reveal .accent {
+	font-size: 140%;
+	font-weight: 400;
+	color: #378BBA;
+}
+
+.reveal .altHeader {
+	font-family: 'Lobster Two', cursive;
+	font-style: italic;
+	text-transform: none;
+	color: #378BBA;
+	text-shadow: 5px 5px 5px #111111;
+}
+
+.reveal .shadow {
+    text-shadow: 5px 5px 5px #111111;
+}
+
+.reveal .footnote {
+    font-size: 50%;
+}

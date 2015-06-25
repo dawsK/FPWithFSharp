@@ -1,152 +1,347 @@
-- title : FsReveal
-- description : Introduction to FsReveal
-- author : Karlkim Suwanmongkol
-- theme : night
-- transition : default
+- title : Functional Programming with F#
+- description : Intro to Functional Programming with F#
+- author : Dawson
+- theme : black
+- transition : slide
 
 ***
 
-### What is FsReveal?
-
-- Generates [reveal.js](http://lab.hakim.se/reveal-js/#/) presentation from [markdown](http://daringfireball.net/projects/markdown/)
-- Utilizes [FSharp.Formatting](https://github.com/tpetricek/FSharp.Formatting) for markdown parsing
-- Get it from [http://fsprojects.github.io/FsReveal/](http://fsprojects.github.io/FsReveal/)
+## Functional Programming ##
+(with F#)
 
 ![FsReveal](images/logo.png)
 
 ***
 
-### Reveal.js
+## <span class="accent">Where </span>are we going? ##
 
-- A framework for easily creating beautiful presentations using HTML.
-
-
-> **Atwood's Law**: any application that can be written in JavaScript, will eventually be written in JavaScript.
-
-***
-
-### FSharp.Formatting
-
-- F# tools for generating documentation (Markdown processor and F# code formatter).
-- It parses markdown and F# script file and generates HTML or PDF.
-- Code syntax highlighting support.
-- It also evaluates your F# code and produce tooltips.
+1. What is Functional Programming?
+2. Why would you use it?
+3. Core Concepts
 
 ***
 
-### Syntax Highlighting
+#### What is ####
+## Functional Programming? ##
 
-#### F# (with tooltips)
+![Lambda](images/lambda.png)
 
-    let a = 5
-    let factorial x = [1..x] |> List.reduce (*)
-    let c = factorial a
-
----
-
-#### C#
-
-    [lang=cs]
-    using System;
-
-    class Program
-    {
-        static void Main()
-        {
-            Console.WriteLine("Hello, world!");
-        }
-    }
-
----
-
-#### JavaScript
-
-    [lang=js]
-    function copyWithEvaluation(iElem, elem) {
-        return function (obj) {
-            var newObj = {};
-            for (var p in obj) {
-                var v = obj[p];
-                if (typeof v === "function") {
-                    v = v(iElem, elem);
-                }
-                newObj[p] = v;
-            }
-            if (!newObj.exactTiming) {
-                newObj.delay += exports._libraryDelay;
-            }
-            return newObj;
-        };
-    }
-
-
----
-
-#### Haskell
- 
-    [lang=haskell]
-    recur_count k = 1 : 1 : 
-        zipWith recurAdd (recur_count k) (tail (recur_count k))
-            where recurAdd x y = k * x + y
-
-    main = do
-      argv <- getArgs
-      inputFile <- openFile (head argv) ReadMode
-      line <- hGetLine inputFile
-      let [n,k] = map read (words line)
-      printf "%d\n" ((recur_count k) !! (n-1))
-
-*code from [NashFP/rosalind](https://github.com/NashFP/rosalind/blob/master/mark_wutka%2Bhaskell/FIB/fib_ziplist.hs)*
-
----
-
-### SQL
-
-    [lang=sql]
-    select *
-    from
-    (select 1 as Id union all select 2 union all select 3) as X
-    where Id in (@Ids1, @Ids2, @Ids3)
-
-*sql from [Dapper](https://code.google.com/p/dapper-dot-net/)*
-
----
-
-### C/AL
-
-    [lang=cal]
-    PROCEDURE FizzBuzz(n : Integer) r_Text : Text[1024];
-    VAR
-      l_Text : Text[1024];
-    BEGIN
-      r_Text := '';
-      l_Text := FORMAT(n);
-
-      IF (n MOD 3 = 0) OR (STRPOS(l_Text,'3') > 0) THEN
-        r_Text := 'Fizz';
-      IF (n MOD 5 = 0) OR (STRPOS(l_Text,'5') > 0) THEN
-        r_Text := r_Text + 'Buzz';
-      IF r_Text = '' THEN
-        r_Text := l_Text;
-    END;
+' Lots could be said about what Functional Programming is. In fact, lots has been said! But
+' I think it can be boiled down into two main concepts: 
+' - High-order functions or First Class functions
+' - Absense of Side Effects
 
 ***
 
-**Bayes' Rule in LaTeX**
+### Higher-Order Functions ###
 
-$ \Pr(A|B)=\frac{\Pr(B|A)\Pr(A)}{\Pr(B|A)\Pr(A)+\Pr(B|\neg A)\Pr(\neg A)} $
+$ (\tau_{1} \to \tau_{2}) \to \tau_{3} $
+
+' A high-order function is a function that:
+' - takes a function, or
+' - returns a function
 
 ***
 
-### The Reality of a Developer's Life 
+#### NO ####
+# Side Effects #
 
-**When I show my boss that I've fixed a bug:**
-  
-![When I show my boss that I've fixed a bug](http://www.topito.com/wp-content/uploads/2013/01/code-07.gif)
-  
-**When your regular expression returns what you expect:**
-  
-![When your regular expression returns what you expect](http://www.topito.com/wp-content/uploads/2013/01/code-03.gif)
-  
-*from [The Reality of a Developer's Life - in GIFs, Of Course](http://server.dzone.com/articles/reality-developers-life-gifs)*
+' - In mathematics, a function takes a parameter and returns a single value
+' - Every time the function is called it returns the same value!
+' - Pure functional programming requires absoltely no mutation whatsoever
 
+--- 
+
+	[lang=cs]
+	private int _sum = 0;
+	public void AddValues(List<int> nums)
+	{
+		foreach (var n in nums)
+		{
+			// any mutation is illegal in a pure functional program
+			_sum += n; 
+		}
+	}
+
+---
+
+Is that <span class="accent">it?</span> I can do this with C#/Java/JavaScript!
+
+![not convinced](images/not_convinced.jpg)
+
+' You're right! You can use Functional Programming in any language since it's a paradigm, 
+' not a language in itself.
+' Languages designed to be functional help because their syntax aids you to think functionally.
+
+---
+
+<p class="note" style="text-align: center">Fine. But... <span class="accent">IMMUTABLE</span> data?</p>
+
+![immutable data](images/immutable.jpg)
+
+' Fear not, I will show you. But first, an F# primer!
+	
+***
+
+#### Quick ####
+# F# Primer #
+
+---
+
+### Defining "Variables" ###
+
+    let name = "Dawson Kroeker"
+    let age = 32
+	
+---
+
+### Collections ###
+
+    let kidsAges = [2; 5; 6]
+    let kidsAgesInJuly = 0 :: kidsAges
+    let years = seq { 1983 .. 2064 }
+    
+---
+
+### Functions ###
+
+    // define a function with two parameters
+    let fullname first last = sprintf "%s %s" first last
+    
+    // call the function
+    fullname "Dawson" "Kroeker"
+    // val it : string = "Dawson Kroeker"
+
+---
+    
+    // multiline functions are indented
+    let evens values =
+        let isEven x = x % 2 = 0 // nested function
+        Seq.filter isEven values
+        
+    // "pipe" the output of one operation into another
+    let sumOfEvens values = 
+        values |> evens |> Seq.sum
+        
+    // without piping
+    let sumOfEvensWithoutPiping values = 
+        Seq.sum (evens values)
+        
+---
+
+### Complex Types ###
+
+    // tuples
+    let coord = 123,456
+    let threeTuple = "a",1,false
+    
+    // record types with named fields
+    type Person = {Name : string; Age : int}
+    let emma = {Name = "Emma"; Age = 6}
+    
+    // union types
+    type FamilyMember =
+        | Child of Person
+        | Parent of Person
+        
+***
+
+### <span class="accent">Why</span> would you use it? ###
+
+***
+
+### Concise ###
+
+	// one-liners
+	[1..100] |> List.sum |> printfn "sum=%d"
+
+---
+
+	// no curly braces, semicolons or parentheses
+	let square x = x * x
+	let sq = square 42
+
+---
+
+	// simple types in one line
+	type Person = {Name : string; Age : int}
+
+---
+
+	// complex types in a few lines
+	type Employee = 
+	  | Worker of Person
+	  | Manager of Employee list
+
+---
+
+	// type inference
+	let jdoe = {Name="John Doe"; Age = 35}
+	let worker = Worker jdoe
+
+***
+
+### Concurrency ###
+
+	let doSomething x = printfn "Running %i" x
+
+    let task = async { doSomething 1 }
+
+	let tasks = 
+		[ for i in 1 .. 40 -> async { doSomething i } ]
+		|> Async.Parallel
+		  
+---
+
+$ immutability \to safer\;concurrency $
+
+***
+
+- data-background : images/freight_train.png
+
+<div style="text-align: left; top: 0px; height: 100vh">There is a freight train barreling down the tracks towards us, with 
+multi-core emblazoned on it; and you’d better be ready by the time it gets here. --<cite>
+<a href="https://pragprog.com/magazines/2013-01/functional-programming-basics" style="color: #FFFFFF; font-weight: bold">Uncle Bob</a>
+</cite></div>
+
+' Uncle Bob Quote:
+' Well, boys and girls, welcome to the wonderful world of simultaneity! Now, how are you going to deal with it?
+' And the answer to that is, simply, “Abandon all assignment, ye who enter here..." You don’t need semaphores if you don’t have 
+' side effects!
+' So that’s the big deal about functional languages; and it is one big fricking deal. There is a freight train barreling down 
+' the tracks towards us, with multi-core emblazoned on it; and you’d better be ready by the time it gets here. 
+' -- Robert C. Martin
+
+***
+
+#### Functional Programming ####
+# Concepts #
+
+***
+
+- data-background : images/curry.jpg
+
+## <span class="altHeader">Currying</span> ##
+
+	// function with one parameter
+	let printParameter x =
+		printfn "x=%i" x
+
+' - Currying - not about curry spice, actually named after a guy named Haskell Curry who did a bunch of Math work in combinatory logic
+' - Mathematical functions take only one parameter, does this mean FP languages can only accept one parameter?
+' - No!
+
+---
+
+<p class="note shadow">"Fake" multiple parameters by returning a function:</p>
+
+	let printTwoParameters x  =  	 // only one parameter
+		let subFunction y =			 // new inner function with one param
+			printfn "x=%i y=%i" x y  
+		subFunction                  // return the inner function
+		
+---
+
+<p class="note shadow">Curried Function:</p>
+
+	// function that takes 2 parameters (sort of)
+	let printTwoParameters x y =
+		printfn "x=%i y=%i" x y
+		
+<br />
+<p class="note shadow">Could call this with one parameter:</p>
+
+	printTwoParameters 1 // returns a function!
+
+***
+
+### Partial Application ###
+
+    let add x y = x + y
+    let addOne = add 1
+    let twoPlusOne = addOne 2
+    // val twoPlusOne : int = 3
+    
+---
+
+<p class="note">Breaking it down:</p>
+    
+    let add x y = x + y
+    // val add : x:int -> y:int -> int
+    
+    let add2 x =
+        let addInner y =
+            x + y
+        addInner
+    // val add2 : x:int -> (int -> int)
+    
+    let addOne = add 1
+    // val addOne : (int -> int)
+    // returns addInner with x set to 1
+
+***
+
+- data-background : images/recursive.jpg
+
+## <div class="shadow" style="margin-top: -100px;">Recursion</div> ##
+
+***
+
+### Immutability and Loops ###
+
+	[lang=cs]
+	public static int Sum(IEnumerable<int> values)
+	{
+		var sum = 0;
+		foreach (var v in values)
+		{
+			sum += v; // illegal in a pure functional language
+		}
+		return sum;
+	}
+	
+--- 
+
+### Same loop without any mutation ###
+
+	let sum values =
+		let rec calcSum total remainingValues = 
+			match remainingValues with
+			| [] -> total
+			| x :: xs -> calcSum (total + x) xs
+		calcSum 0 values
+		
+---
+
+Even <span class="altHeader" style="font-size: 175%">Easier</span>
+
+	List.sum [1;2;3;4;5]
+	
+' You will find that a lot of common patterns are encapsulated in methods included with FSharp. 
+' The Functional Way is to abstract common behaviour into pure, high-level functions
+
+***
+
+## Commonly Used Functions ##
+
+|-------------------------------------------|-----------------------------------------|------------------------------------------|
+| <span class="accent">List</span>.filter  	| <span class="accent">Seq</span>.filter  | <span class="accent">Array</span>.filter |
+| <span class="accent">List</span>.fold		| <span class="accent">Seq</span>.fold	  | <span class="accent">Array</span>.fold   |
+| <span class="accent">List</span>.iter		| <span class="accent">Seq</span>.iter	  | <span class="accent">Array</span>.iter   |
+| <span class="accent">List</span>.map		| <span class="accent">Seq</span>.map	  | <span class="accent">Array</span>.map    |
+| <span class="accent">List</span>.reduce	| <span class="accent">Seq</span>.reduce  | <span class="accent">Array</span>.reduce |
+
+***
+
+## Sites you <span class="accent">must</span> visit ##
+
+1. [http://fsharpforfunandprofit.com/ *](http://fsharpforfunandprofit.com/)
+2. [http://www.tryfsharp.org/](http://www.tryfsharp.org/)
+3. [http://fsharp.org/](http://fsharp.org/)
+
+<br /><br />
+<div class="footnote">* Note: I stole a LOT of material from here for this presentation.</div>
+
+***
+
+# Questions? #
