@@ -16,7 +16,7 @@
 ## <span class="accent">Where </span>are we going? ##
 
 1. What is Functional Programming?
-2. Why would you use it?
+2. F# Primer
 3. Core Concepts
 
 ***
