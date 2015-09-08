@@ -48,7 +48,7 @@ $ (\tau_{1} \to \tau_{2}) \to \tau_{3} $
 
 ' - In mathematics, a function takes a parameter and returns a single value
 ' - Every time the function is called it returns the same value!
-' - Pure functional programming requires absoltely no mutation whatsoever
+' - Pure functional programming requires absolutely no mutation whatsoever
 
 --- 
 
@@ -97,8 +97,8 @@ Is that <span class="accent">it?</span> I can do this with C#/Java/JavaScript!
 
 ### Collections ###
 
-    let kidsAges = [2; 5; 6]
-    let kidsAgesInJuly = 0 :: kidsAges
+    let kidsAgesInJune = [2; 5; 6]
+    let kidsAgesAsOfJuly = 0 :: kidsAgesInJune
     let years = seq { 1983 .. 2064 }
     
 ---
@@ -137,81 +137,25 @@ Is that <span class="accent">it?</span> I can do this with C#/Java/JavaScript!
     
     // record types with named fields
     type Person = {Name : string; Age : int}
-    let emma = {Name = "Emma"; Age = 6}
+    let emma = {Name = "Emma"; Age = 7}
     
     // union types
     type FamilyMember =
         | Child of Person
         | Parent of Person
-        
-***
-
-### <span class="accent">Why</span> would you use it? ###
-
-***
-
-### Concise ###
-
-	// one-liners
-	[1..100] |> List.sum |> printfn "sum=%d"
 
 ---
-
-	// no curly braces, semicolons or parentheses
-	let square x = x * x
-	let sq = square 42
-
----
-
-	// simple types in one line
-	type Person = {Name : string; Age : int}
-
----
-
-	// complex types in a few lines
-	type Employee = 
-	  | Worker of Person
-	  | Manager of Employee list
-
----
-
-	// type inference
-	let jdoe = {Name="John Doe"; Age = 35}
-	let worker = Worker jdoe
-
-***
-
+		
 ### Concurrency ###
 
-	let doSomething x = printfn "Running %i" x
+    let doSomething x = printfn "Running %i" x
 
     let task = async { doSomething 1 }
 
-	let tasks = 
-		[ for i in 1 .. 40 -> async { doSomething i } ]
-		|> Async.Parallel
-		  
----
-
-$ immutability \to safer\;concurrency $
-
-***
-
-- data-background : images/freight_train.png
-
-<div style="text-align: left; top: 0px; height: 100vh">There is a freight train barreling down the tracks towards us, with 
-multi-core emblazoned on it; and you’d better be ready by the time it gets here. --<cite>
-<a href="https://pragprog.com/magazines/2013-01/functional-programming-basics" style="color: #FFFFFF; font-weight: bold">Uncle Bob</a>
-</cite></div>
-
-' Uncle Bob Quote:
-' Well, boys and girls, welcome to the wonderful world of simultaneity! Now, how are you going to deal with it?
-' And the answer to that is, simply, “Abandon all assignment, ye who enter here..." You don’t need semaphores if you don’t have 
-' side effects!
-' So that’s the big deal about functional languages; and it is one big fricking deal. There is a freight train barreling down 
-' the tracks towards us, with multi-core emblazoned on it; and you’d better be ready by the time it gets here. 
-' -- Robert C. Martin
-
+    let tasks = 
+        [ for i in 1 .. 40 -> async { doSomething i } ]
+        |> Async.Parallel		
+        
 ***
 
 #### Functional Programming ####
